@@ -37,7 +37,12 @@ a {
     color: rgba(#000, 0.6);
   }
 }
-
+hr {
+  max-width: 6em;
+  margin-right: auto;
+  margin-left: auto;
+  color: #26b6d8;
+}
 .container {
   max-width:1000px;
   margin-right: auto;
@@ -113,7 +118,7 @@ a {
 /* The hero image */
 .hero-image {
   /* Use "linear-gradient" to add a darken background effect to the image (photographer.jpg). This will make the text easier to read */
-  background: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.9)), url("../images/hhop.jpg");
+  background: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.9)), url("../images/fusion.png");
 
   /* Set a specific height */
   height: 500px;
