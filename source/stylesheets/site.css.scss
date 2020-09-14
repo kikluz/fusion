@@ -1,3 +1,14 @@
+/* Using plain CSS */
+@media (min-width: 768px) {
+  
+}
+
+/* Using SCSS variables to store breakpoints */
+$breakpoint-tablet: 768px;
+@media (min-width: $breakpoint-tablet) {
+  
+}
+
 * {
   margin: 0;   
   padding: 0;
@@ -119,10 +130,11 @@ hr {
 .hero-image {
   /* Use "linear-gradient" to add a darken background effect to the image (photographer.jpg). This will make the text easier to read */
   background: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.9)), url("../images/fusion.png");
-
+@media (min-width: 768px) {
   /* Set a specific height */
   height: 500px;
-
+}
+  height: 200px;
   /* Position and center the image to scale nicely on all screens */
   background-position: center;
   background-repeat: no-repeat;
@@ -151,9 +163,12 @@ hr {
 //--------------------------------------------------------------------------------------------------------------
 // Two columns How to Center a Div Vertically and Horizontally with Flexbox, https://www.freecodecamp.org/news/how-to-center-anything-with-css-align-a-div-text-and-more/
 //--------------------------------------------------------------------------------------------------------------
-.info {
+@media (min-width: 768px) {
+  .info {
   padding:100px;
-  }
+  }  
+}
+
 
 .events_panel {
   
