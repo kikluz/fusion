@@ -3,16 +3,19 @@ title: Fusion | About
 ---
 
 <div class="container container_wrapper">
-	<section class="about_info">
-		<p>Picts goes here</p>
-	</section>
-	<aside>
-		<h1>About</h1>
-	<p>
-		<%= lorem.sentences 5 %>
-	</p>
-	<p>
-		<%= lorem.sentences 5 %>
-	</p>	
-	</aside>
+	<div class='row'>
+		<section class='column'>
+			<div class='image_col'>
+				<%= image_tag 'hhop.jpg' %>
+			</div>
+		</section>
+
+		<aside class='column'>
+			<div class='text-column'>
+				<h1>About</h1>
+				<%= lorem.sentences 20 %>
+			</div>
+		</aside>
+	</div>
 </div>
+

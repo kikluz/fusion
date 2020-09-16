@@ -17,3 +17,5 @@ gem 'middleman-compass', '>= 4.0.0'
 gem 'byebug'
 gem "middleman-syntax"
 gem 'redcarpet'
+
+gem 'soundcloud'

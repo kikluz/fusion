@@ -10,8 +10,9 @@ $breakpoint-tablet: 768px;
 }
 
 * {
-  margin: 0;   
-  padding: 0;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 body {
   // height: 100%;
@@ -168,7 +169,9 @@ hr {
   padding:100px;
   }  
 }
-
+.main_name {
+  color: #8e110d;
+}
 
 .events_panel {
   
@@ -177,6 +180,21 @@ hr {
     top: 50%;
     left: 50%;
    
+}
+//---https://avexdesigns.com/blog/responsive-youtube-embed
+.video_container { 
+  position: relative; 
+  padding-bottom: 56.25%; 
+  padding-top: 30px;
+  height: 0; 
+  overflow: hidden;
+}
+
+.video_container iframe, .video-container object, .video-container embed { 
+  position: absolute; 
+  top: 0; left: 0; 
+  width: 100%; 
+  height: 100%; 
 }
 //--------------------------------------------------------------------------------------------------------------
 // Footer 
@@ -197,59 +215,213 @@ footer {
 // Gallery page 
 //--------------------------------------------------------------------------------------------------------------
 
-.image-link {
-  cursor: -webkit-zoom-in;
-  cursor: -moz-zoom-in;
-  cursor: zoom-in;
+img {
+  max-width: 100%;
+}
+
+/*
+sprite svg
+*/
+.sprite-svg {
+  display: none;
+}
+
+/*
+images wrapper
+*/
+.wrapper {
+  display: block;
+  width: 100%;
+  max-width: 1200px;
+  
+  columns: 1;
+  column-gap: 0;
+  break-inside: avoid;
+  
+  margin: 20px auto 50px;
+  
+  @media (min-width: 600px) {
+     columns: 2;
+  }
+  
+  @media (min-width: 800px) {
+     columns: 3;
+  }
 }
 
 
-/* This block of CSS adds opacity transition to background */
-.mfp-with-zoom .mfp-container,
-.mfp-with-zoom.mfp-bg {
-  opacity: 0;
-  -webkit-backface-visibility: hidden;
-  -webkit-transition: all 0.3s ease-out; 
-  -moz-transition: all 0.3s ease-out; 
-  -o-transition: all 0.3s ease-out; 
-  transition: all 0.3s ease-out;
+
+.grid-image {
+  float: left;
+  width: 100%;
+  padding: 4px;
+  
+  img  {
+    float: left;
+    width: 100%;
+  }
 }
 
-.mfp-with-zoom.mfp-ready .mfp-container {
-    opacity: 1;
-}
-.mfp-with-zoom.mfp-ready.mfp-bg {
-    opacity: 0.8;
-}
-
-.mfp-with-zoom.mfp-removing .mfp-container, 
-.mfp-with-zoom.mfp-removing.mfp-bg {
-  opacity: 0;
-}
-
-
-
-/* padding-bottom and top for image */
-.mfp-no-margins img.mfp-img {
-  padding: 0;
-}
-/* position of shadow behind the image */
-.mfp-no-margins .mfp-figure:after {
+.zoom-wrapper {
+  display: none;
+  position: fixed;
+  left: 0;
   top: 0;
   bottom: 0;
+  width: 100%;
+  overflow: auto;
+  
+  background-color: rgb(0, 0, 0);
+  background-color: rgba(0, 0, 0, 0.6);
 }
-/* padding for main container */
-.mfp-no-margins .mfp-container {
-  padding: 0;
+
+.zoom-wrapper:target {
+  display: flex;
+}
+
+
+@keyframes top-animation {
+    from {
+    top: -100px;
+    opacity: 0;
+  }
+    
+  to {
+    top: 0px;
+    opacity: 1;
+  }
+}
+
+.zoom-wrapper__image {
+    position: relative;
+  width: 80%;
+  max-width:1000px;
+  height: 100%;
+  margin: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
+
+    /* animation */
+    animation-name: top-animation;
+    animation-duration: 0.5s;
+}
+
+.cell {
+    box-flex: 1;
+    flex: 1 1 auto;
+}
+
+.zoom-image {
+  max-height: 100%;
+}
+
+/*
+arrow navigation
+*/
+.navigation-arrow {
+  position: fixed;
+  top: 50%;
+  transform: translateY(-50%);
+  perspective: 1000px;
+  perspective-origin: 100% 50%;
+}
+
+.navigation-arrow__left {
+  left: 0;
+}
+
+.navigation-arrow__next {
+  right: 0;
+}
+
+.navigation-arrow__image {
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  overflow: hidden;
+  
+  transition: transform 0.3s;
+  
+  .navigation-arrow__prev &{
+    left: 40px;
+    transform: rotateY(90deg);
+      transform-origin: 0% 50%;
+  }
+  
+  .navigation-arrow__next &{
+    right: 40px;
+    transform: rotateY(-90deg);
+      transform-origin: 100% 50%;
+  }
+  
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  .navigation-arrow__prev:hover &,
+  .navigation-arrow__next:hover &{
+    transform: rotateY(0deg);
+  }
+
 }
 
 
 
-/* aligns caption to center */
-.mfp-title {
-  text-align: center;
-  padding: 6px 0;
+
+.navigation-arrow__icon {
+  position: relative;
+  display: block;
+  width: 40px;
+  height: 100px;
+  padding: 6px;
+  
+  background-color: #ffffff;
+  
+  & svg.icon {
+    top: 50%;
+    transform: translateY(-50%);
+    
+    fill: #000000;
+    position: relative;
+    stroke-width: 2;
+    stroke: #000000;
+  }
 }
-.image-source-link {
-  color: #DDD;
+
+.zoom-wrapper__close {
+  position: fixed;
+  top: 10px;
+  right: 10px;
+  z-index: 1;
+  
+  color: #ffffff;
+  font-size: 40px;
+  text-decoration: none;
+  
+  text-shadow: 0px 0px 2px rgba(0, 0, 0, 0.3);
+}
+
+//--------------------------------------------------------------------------------------------------------------
+// About page 
+//--------------------------------------------------------------------------------------------------------------
+.row {
+  @media screen and (max-width: 600px) {
+  display: inline-block;
+}
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+.column {
+  padding-right: 2em;
+  display: flex;
+  flex-direction: column;
+  flex-basis: 100%;
+  flex: 1;
 }
